@@ -22,13 +22,20 @@ J = (1/m)*sum(-y.*log(sigmoid(X*theta))-(1-y).*log(1-sigmoid(X*theta)) ) + (lamb
 % (100x1)*(100x3*3x1) - (100x1.*100x3*3x1)
 
 
+
+
 grad(1) = (1/m)*sum((sigmoid(X*theta) - y).*X(:,1));
-for i=2:size(theta)
-grad(i) = (1/m)*sum((sigmoid(X*theta) - y).*X(:,i)) + ((lambda/m)*theta(i,1));    
-end
+% any values that chancel out dont worry. 
+grad(2:end) = (1/m)*X(:,2:end)'*(sigmoid(X*theta) - y)  + ((lambda/m)*theta(2:end))
 
 
+%for i=2:size(theta)
+%grad(i) = (1/m)*sum((sigmoid(X*theta) - y).*X(:,i)) + ((lambda/m)*theta(i,1));    
+%end
 
+ %0.1584
+ %   0.2216
+ %  -0.1049
 
 
 % =============================================================

@@ -23,10 +23,11 @@ grad = zeros(size(theta));
 
 J = (1/m)*sum(-y.*log(sigmoid(X*theta))-(1-y).*log(1-sigmoid(X*theta)) );
 % (100x1)*(100x3*3x1) - (100x1.*100x3*3x1)
+grad = (1/m)*X'*(sigmoid(X*theta) - y)
 
-for i=1:size(theta)
-grad(i) = (1/m)*sum((sigmoid(X*theta) - y).*X(:,i));
-end
+%for i=1:size(theta)
+%grad(i) = (1/m)*sum((sigmoid(X*theta) - y).*X(:,i));
+%end
 % Update theta 
 
 %100x1
