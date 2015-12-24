@@ -24,13 +24,13 @@ p = zeros(size(X, 1), 1);
 %set ones to front so we have 5000 x 401 matrix
 X = [ones(m, 1) X];
 
-z1 = X*Theta1'; % 5000x401x401x25 = (5000 * 25)
-a2 = sigmoid(z1); % (5000 * 25)
-a2 = [ones(size(a2,1),1) a2]; % (5000 * 26)
-z3 =  a2*Theta2'; % 5000x26x26x10 = (5000 x 10)
-a3 = sigmoid(z3); % (5000 x 10)
-[predict_max, index_max] = max(a3, [], 2); %(5000 x 1)
-p = index_max; 
+z1 = X*Theta1'; % 5000x401 * 401* 25 = 5000 * 25
+a2 = sigmoid(z1); % 5000 * 25
+a2 = [ones(size(a2,1),1) a2]; %5000 * 26
+z3 =  Theta2*a2; % 10x 5000
+a3 = sigmoid(z3);
+[predict_max, index_max] = max(a3, [], 2);
+p = index_max;
 
 
 % =========================================================================
